@@ -9,6 +9,6 @@ Check regions-sum vs World: 8 of 37 years differ (max abs diff 1 event). Decisio
    2015: moderate diff -1, severe diff +1
    2016: moderate diff -1, severe diff +0
 CO2: 67 annual means, 1959-2025
-SST anomaly: 68 years, 1959-2026 (deg C vs 1861-1890 baseline). Dropped years after 2025 (incomplete year).
+SST anomaly: 177 years, 1850-2026 (deg C vs 1861-1890 baseline). Dropped years after 2025 (incomplete year).
 pH: 346 cruise measurements -> calendar-year means. Dropped years with < 6 samples (seasonal bias): [1988, 2022]
 Merged climate table: 67 years, 1959-2025
