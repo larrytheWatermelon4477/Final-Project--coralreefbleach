@@ -1,0 +1,14 @@
+Bleaching: 185 rows, 5 entities, 1980-2016, missing values: 0
+Check regions-sum vs World: 8 of 37 years differ (max abs diff 1 event). Decision: use the published World row for global totals, regional rows for regional views.
+   1993: moderate diff -1, severe diff +0
+   1997: moderate diff -1, severe diff +0
+   2002: moderate diff +1, severe diff +0
+   2003: moderate diff -1, severe diff +0
+   2007: moderate diff -1, severe diff +0
+   2013: moderate diff -1, severe diff +0
+   2015: moderate diff -1, severe diff +1
+   2016: moderate diff -1, severe diff +0
+CO2: 67 annual means, 1959-2025
+SST anomaly: 68 years, 1959-2026 (deg C vs 1861-1890 baseline). Dropped years after 2025 (incomplete year).
+pH: 346 cruise measurements -> calendar-year means. Dropped years with < 6 samples (seasonal bias): [1988, 2022]
+Merged climate table: 67 years, 1959-2025

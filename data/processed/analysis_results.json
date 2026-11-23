@@ -1,0 +1,159 @@
+{
+  "by_period": {
+    "1980s": {
+      "years": 10,
+      "severe_per_year": 3.8,
+      "moderate_per_year": 4.0,
+      "total_per_year": 7.8,
+      "severe_share_pct": 48.7
+    },
+    "1990s": {
+      "years": 10,
+      "severe_per_year": 8.8,
+      "moderate_per_year": 7.5,
+      "total_per_year": 16.3,
+      "severe_share_pct": 54.0
+    },
+    "2000s": {
+      "years": 10,
+      "severe_per_year": 6.5,
+      "moderate_per_year": 12.1,
+      "total_per_year": 18.6,
+      "severe_share_pct": 34.9
+    },
+    "2010-16": {
+      "years": 7,
+      "severe_per_year": 15.43,
+      "moderate_per_year": 10.29,
+      "total_per_year": 25.71,
+      "severe_share_pct": 60.0
+    }
+  },
+  "severe_per_year_ratio_2010s_vs_1980s": 4.1,
+  "mass_bleaching_threshold": 10,
+  "mass_bleaching_years": [
+    1983,
+    1987,
+    1998,
+    2002,
+    2005,
+    2010,
+    2015,
+    2016
+  ],
+  "gaps_between_mass_years": [
+    4,
+    11,
+    4,
+    3,
+    5,
+    5,
+    1
+  ],
+  "top_severe_years": {
+    "1998": 57,
+    "2016": 43,
+    "2010": 37
+  },
+  "regions_1980_2016": {
+    "Australasia": {
+      "severe": 80,
+      "moderate": 64,
+      "total": 144,
+      "severe_share_pct": 55.6
+    },
+    "Pacific": {
+      "severe": 76,
+      "moderate": 39,
+      "total": 115,
+      "severe_share_pct": 66.1
+    },
+    "West Atlantic": {
+      "severe": 75,
+      "moderate": 149,
+      "total": 224,
+      "severe_share_pct": 33.5
+    },
+    "Indian Ocean & Middle East": {
+      "severe": 69,
+      "moderate": 50,
+      "total": 119,
+      "severe_share_pct": 58.0
+    }
+  },
+  "regions_severe_1980s_vs_2010_16": {
+    "Australasia": {
+      "1980s": 3,
+      "2010-16": 43
+    },
+    "Indian Ocean & Middle East": {
+      "1980s": 7,
+      "2010-16": 32
+    },
+    "Pacific": {
+      "1980s": 10,
+      "2010-16": 24
+    },
+    "West Atlantic": {
+      "1980s": 18,
+      "2010-16": 10
+    }
+  },
+  "corr_sst_vs_severe": {
+    "pearson_r": 0.53,
+    "pearson_p": 0.00077,
+    "spearman_rho": 0.64,
+    "spearman_p": 2.4e-05
+  },
+  "corr_sst_vs_total": {
+    "pearson_r": 0.65,
+    "pearson_p": 1.3e-05,
+    "spearman_rho": 0.75,
+    "spearman_p": 9.2e-08
+  },
+  "corr_co2_vs_severe": {
+    "pearson_r": 0.3,
+    "pearson_p": 0.066,
+    "spearman_rho": 0.45,
+    "spearman_p": 0.0047
+  },
+  "corr_co2_vs_sst_1959_2025": 0.96,
+  "regression_severe_on_sst": {
+    "slope_events_per_0_1C": 3.95,
+    "intercept": -15.18,
+    "r_squared": 0.28,
+    "p": 0.00077
+  },
+  "corr_detrended_year_to_year": {
+    "pearson_r": 0.57,
+    "p": 0.00028
+  },
+  "co2": {
+    "1980": 338.76,
+    "2016": 404.41,
+    "2025": 427.35,
+    "change_1980_2025_pct": 26.2
+  },
+  "sst": {
+    "1980": 0.4,
+    "2016": 0.99,
+    "2024": 1.21,
+    "2025": 1.1,
+    "warmest_year": 2024
+  },
+  "ph": {
+    "first_year": 1989,
+    "first": 8.107,
+    "last_year": 2024,
+    "last": 8.041,
+    "change": -0.067,
+    "acidity_increase_pct": 17.0,
+    "trend_per_decade": -0.019
+  },
+  "context": {
+    "noaa_crw_4th_event_reef_area_pct": 84.4,
+    "noaa_crw_3rd_event_reef_area_pct": 68.2,
+    "noaa_crw_4th_event_countries": 83,
+    "amcs_marine_life_relies_on_reefs": "over one quarter"
+  }
+}

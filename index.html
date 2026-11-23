@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bleached</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">CIS4930 Final Project · Sanai Andrews</p>
+    <h1>Bleached</h1>
+    <p class="lede">As atmospheric CO₂ has risen, how have the <strong>frequency</strong> and <strong>severity</strong> of coral bleaching changed, which reef regions were hit hardest, and what else is changing in the water?</p>
+    <div class="kpis" id="kpis"></div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap prose" id="background">
+    <h2>What bleaching is</h2>
+    <p>Reef-building corals live with algae inside their tissue that feed them and give them color. When the water stays too hot for too long, corals expel those algae and turn white. A bleached coral is not dead yet, but if the stress lasts, it starves. NOAA calls climate-driven ocean warming the leading cause. Polluted runoff, too much sunlight in shallow water, extreme low tides and even sudden cold can also trigger it.</p>
+    <p>It matters because reefs are crowded: over a quarter of all marine life relies on them.</p>
+  </section>
+
+  <section class="wrap" id="chain">
+    <div class="section-head">
+      <h2>The chain: CO₂ → ocean heat → bleaching</h2>
+      <p class="sub">Each chart has its own scale. The dashed line follows the year you pick below.</p>
+    </div>
+    <div class="chain-grid">
+      <figure class="panel" id="chart-co2"><figcaption><span class="ttl">Atmospheric CO₂</span><span class="unit">ppm, Mauna Loa</span></figcaption></figure>
+      <figure class="panel" id="chart-sst"><figcaption><span class="ttl">Sea-surface temperature</span><span class="unit">°C above 1861–1890</span></figcaption></figure>
+      <figure class="panel" id="chart-ph"><figcaption><span class="ttl">Seawater pH</span><span class="unit">Station ALOHA, Hawaii · lower = more acidic</span></figcaption></figure>
+    </div>
+    <p class="note" id="chain-note"></p>
+  </section>
+
+  <section class="wrap" id="explorer">
+    <div class="section-head">
+      <h2>Bleaching events at 100 reef locations, 1980–2016</h2>
+      <p class="sub">Moderate = up to 30% of corals bleached. Severe = more than 30%.</p>
+    </div>
+    <div class="controls" role="group" aria-label="Filters">
+      <label class="ctl">Region
+        <select id="region"></select>
+      </label>
+      <div class="seg" role="radiogroup" aria-label="Severity" id="severity">
+        <button type="button" data-v="all" aria-pressed="true">All</button>
+        <button type="button" data-v="severe" aria-pressed="false">Severe</button>
+        <button type="button" data-v="moderate" aria-pressed="false">Moderate</button>
+      </div>
+      <label class="ctl year">Year <output id="year-out">2016</output>
+        <input type="range" id="year" min="1980" max="2016" step="1" value="2016">
+      </label>
+      <button type="button" id="play" class="btn">▶ Play</button>
+    </div>
+    <div class="explore-grid">
+      <figure class="panel" id="chart-map"><figcaption><span class="ttl" id="map-title">Events by region</span><span class="unit">circle area = events that year</span></figcaption></figure>
+      <figure class="panel" id="chart-bars"><figcaption><span class="ttl" id="bars-title">Events per year</span><span class="unit">count</span></figcaption></figure>
+    </div>
+    <div class="explore-grid lower">
+      <figure class="panel" id="chart-dumbbell"><figcaption><span class="ttl">Which regions got worse?</span><span class="unit">severe events: 1980s vs 2010–16</span></figcaption></figure>
+      <figure class="panel" id="chart-scatter"><figcaption><span class="ttl">Hotter years, more severe bleaching</span><span class="unit">each dot is one year</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="wrap prose" id="since">
+    <h2>After 2016: two global events in eight years</h2>
+    <p>This dataset ends in 2016, but the trend did not. NOAA Coral Reef Watch counts four global bleaching events: 1998, 2010, 2014–2017 and the one confirmed in April 2024. During the third, 68.2% of the world's reef area saw bleaching-level heat. Between January 2023 and September 2025, the fourth reached about 84.4% of reef area in at least 83 countries and territories, the largest on record.</p>
+    <p>The Global Coral Reef Monitoring Network's 2025 report links the biggest drops in coral cover to 1998, 2010, 2016 and 2023–24, and warns that with a global event every 5–6 years, reefs are expected to keep declining.</p>
+  </section>
+
+  <section class="wrap prose method" id="method">
+    <h2>How this was made</h2>
+    <ol class="pipeline">
+      <li><b>Collect.</b> Hughes et al. (2018) bleaching records via Our World in Data; NOAA Mauna Loa CO₂; Met Office HadSST 4.2; Hawaii Ocean Time-series pH.</li>
+      <li><b>Preprocess.</b> Renamed and typed columns, checked that the four regions add up to the World total (8 of 37 years differ by one event, so World is used for global totals), averaged pH cruises into calendar years and dropped years with fewer than 6 samples, dropped the incomplete 2026 temperature year.</li>
+      <li><b>Analyze.</b> Per-decade rates, severe share, Pearson and Spearman correlations, a linear fit of severe events on temperature, and a year-over-year (detrended) check.</li>
+      <li><b>Visualize.</b> D3.js: linked line charts, a map, stacked bars, a dumbbell chart and a scatter plot, all driven by one year slider.</li>
+    </ol>
+    <p class="sources">Sources: <a href="https://ourworldindata.org/grapher/coral-bleaching-events">Hughes et al. 2018 via OWID</a> · <a href="https://gml.noaa.gov/ccgg/trends/">NOAA GML CO₂</a> · <a href="https://ourworldindata.org/grapher/sea-surface-temperature-anomaly">HadSST via OWID</a> · <a href="https://ourworldindata.org/grapher/seawater-ph">HOT pH via OWID</a> · <a href="https://coralreefwatch.noaa.gov/satellite/research/coral_bleaching_report.php">NOAA Coral Reef Watch</a> · <a href="https://gcrmn.net/2025-report/">GCRMN 2025</a> · <a href="https://oceanservice.noaa.gov/facts/coral_bleach.html">NOAA Ocean Service</a> · <a href="https://www.marineconservation.org.au/coral-bleaching/">AMCS</a></p>
+  </section>
+</main>
+
+<div id="tip" class="tip" role="status" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

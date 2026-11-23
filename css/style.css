@@ -1,0 +1,115 @@
+/* Layout: one reading column (~72ch) for story text, wider grids for linked charts.
+   Palette: cool reef-water neutrals, deep ocean ink, one blue for climate drivers,
+   a coral-orange ramp (light = moderate, dark = severe) for bleaching. */
+:root {
+  --bg: #f2f6f6;
+  --surface: #fcfdfd;
+  --ink: #10232b;
+  --muted: #55686e;
+  --line: #d5dfe1;
+  --grid: #e6eded;
+  --climate: #2a78d6;
+  --moderate: #f09c6c;
+  --severe: #c4471a;
+  --band: rgba(196, 71, 26, 0.08);
+  --land: #dfe7e8;
+  --focus: #2a78d6;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c181d; --surface: #12232a; --ink: #e5eef0; --muted: #98abb0;
+    --line: #263c44; --grid: #1c3038; --climate: #5598e7;
+    --moderate: #a8502a; --severe: #f39465; --band: rgba(243, 148, 101, 0.1);
+    --land: #1d3139; --focus: #5598e7; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c181d; --surface: #12232a; --ink: #e5eef0; --muted: #98abb0;
+  --line: #263c44; --grid: #1c3038; --climate: #5598e7;
+  --moderate: #a8502a; --severe: #f39465; --band: rgba(243, 148, 101, 0.1);
+  --land: #1d3139; --focus: #5598e7; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 var(--font-body);
+}
+.wrap {
+  width: 100%; max-width: 1160px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { display: flex; flex-direction: column; gap: 56px; padding-block: 8px 64px; }
+h1, h2 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h2 { font-size: 1.55rem; line-height: 1.25; font-weight: 600; }
+a { color: var(--climate); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* hero */
+.hero { padding-block: 48px 40px; }
+.eyebrow { margin: 0 0 6px; font: 500 0.78rem/1.4 var(--font-data); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hero h1 { font-size: clamp(3rem, 9vw, 5.5rem); line-height: 0.95; letter-spacing: -0.02em; font-weight: 700; }
+.lede { max-width: 62ch; font-size: 1.2rem; margin: 18px 0 28px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px; }
+.kpi .num { font: 600 2.2rem/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.kpi .num small { font-size: 1rem; color: var(--muted); font-weight: 500; }
+.kpi .lbl { color: var(--muted); font-size: 0.92rem; }
+.kpi .src { font: 0.72rem/1.4 var(--font-data); color: var(--muted); }
+
+/* prose */
+.prose > * { max-width: 72ch; }
+.prose p { margin: 12px 0 0; }
+.section-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+.sub, .note { color: var(--muted); margin: 0; font-size: 0.95rem; }
+.note { margin-top: 12px; max-width: 80ch; }
+
+/* panels & charts */
+.panel { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 10px; min-width: 0; }
+figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-bottom: 6px; }
+.ttl { font: 600 1rem/1.3 var(--font-display); }
+.unit { font: 0.75rem/1.4 var(--font-data); color: var(--muted); }
+.chain-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.explore-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; }
+.explore-grid.lower { margin-top: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { fill: var(--muted); font: 11px var(--font-data); }
+.axis path, .axis line { stroke: var(--line); }
+.gridline line { stroke: var(--grid); }
+.gridline path { display: none; }
+.yr-marker { stroke: var(--ink); stroke-width: 1.25; stroke-dasharray: 4 3; }
+.land { fill: var(--land); }
+.lbl-ink { fill: var(--ink); font-family: var(--font-body); font-size: 12px; font-weight: 600; }
+.lbl-muted { fill: var(--muted); font-family: var(--font-body); font-size: 11px; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin-bottom: 16px; }
+.ctl { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 0.95rem; }
+select, .btn, .seg button { font: inherit; font-size: 0.92rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.year { flex: 1 1 260px; }
+.year input { flex: 1; accent-color: var(--ink); min-width: 120px; }
+.year output { font: 600 1.05rem var(--font-display); font-variant-numeric: tabular-nums; min-width: 3ch; }
+.btn:hover, .seg button:hover, select:hover { border-color: var(--muted); }
+
+/* method */
+.pipeline { padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+.sources { font-size: 0.88rem; color: var(--muted); }
+
+/* tooltip */
+.tip { position: fixed; z-index: 20; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 0.85rem; line-height: 1.4; box-shadow: 0 6px 20px rgba(0,0,0,0.12); max-width: 240px; }
+.tip b { font-family: var(--font-display); }
+
+@media (max-width: 860px) {
+  .chain-grid, .explore-grid, .explore-grid.lower { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
